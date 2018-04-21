@@ -84,6 +84,8 @@ the code into blocks of expressions, and both treat functions similarly.
 
 ## Self-invoking functions and closures
 
+* 클로저 MDN정의: 클로저는 독립적인 (자유) 변수를 가리키는 함수이다. 또는, 클로저 안에 정의된 함수는 만들어진 환경을 ‘기억한다’.
+
 * Closures in JavaScript are functions that have access to the parent
 scope, even when the parent function has closed.
 
@@ -109,4 +111,73 @@ var accumulator = Valueaccumulator();
 accumulator(obj1);
 accumulator(obj2);
 console.log (accumulator()); // Output: [obj1.value, obj2.value]
+
+## Higher-order functions
+
+*  higher-order function, the array can be worked on by applying that function to each item in
+the array to create a new array.
+
+* self invoking function는 higher-order functions의 형태이다 
+
+* higher-order functions는 입력으로 다른 함수를 취하고 출력으로 함수를 리턴한다 
+
+var accumulator2 = ValueAccmulator();
+
+var objects = [obj1, obj2, obj3];
+
+objects.forEach(accumulator2()); // 위와 같은 결과 
+
+## pure functions 
+
+* pure functions 입력으로 넣어진 값으로 계산된 값을 리턴한다. 외부 변수, 전역변수는 사용하지못한다. 그래서 side effect는 걱정없음!
+
+* side effect가 없이 입력이 같으면 언제나 같은 값을 낼 수 있는 함수 
+
+## Anonymous functions 
+
+* 이름없는 함수
+
+## Method chains
+
+console.log([1,2,3,4].reverse().concat([5,6]).map(Math.sqrt));  // 이런식으로 연결
+
+## Recursion
+
+* 함수형프로그래밍 정신과 비슷!
+
+var getLeafs = function(node) {
+
+  if (node.childNodes.length == 0) {
+  
+    return node.innerText;
+    
+  }
+  else {
+  
+    return node.childNodes.map(getLeafs);
+    
+  }
+  
+}
+
+## Divide and conquer 
+
+## Lazy evaluation 
+
+* also known as non-strict evaluatio
+
+* 값이 필요 할 때까지 계산안함. (텐서플로우같네) 
+
+* lazy.js를 이용해야핢 
+
+// wishful JavaScript pseudocode:
+var infinateNums = range(1 to infinity);
+var tenPrimes = infinateNums.getPrimeNumbers().first(10);
+
+이러한 경우에 사용 할 수있음
+
+# The functional programmer's toolkit
+
+블라블라
+
 
