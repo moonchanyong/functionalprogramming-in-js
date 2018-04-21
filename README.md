@@ -78,3 +78,35 @@ and state are all inherited."
 interpreters often closely resemble Scheme interpreters. Both are dynamic,
 both have flexible datatypes that easily combine and transform, both evaluate
 the code into blocks of expressions, and both treat functions similarly.
+
+
+# working with functions 
+
+## Self-invoking functions and closures
+
+* Closures in JavaScript are functions that have access to the parent
+scope, even when the parent function has closed.
+
+* Closures are a feature of all functional languages. Traditional imperative languages
+do not allow them
+
+var ValueAccumulator = function () {
+  
+   var values = [];
+   var accumulate = function(obj) {
+    if (obj) {
+      values.push(obj.value);
+      return values;
+    }
+    else {
+      return values;
+    }
+  };
+  return accumulate;
+};
+
+var accumulator = Valueaccumulator();
+accumulator(obj1);
+accumulator(obj2);
+console.log (accumulator()); // Output: [obj1.value, obj2.value]
+
