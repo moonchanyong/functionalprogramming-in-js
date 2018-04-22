@@ -310,3 +310,143 @@ var shadesOfBlue = nums2hex.partialApplyRight(255);
 console.log(shadesOfBlue(123, 0)); // '7b00ff'
 
 console.log(shadesOfBlue(100, 200)); // '64c8ff'
+
+ ## Currying
+ 
+ * partial applicant와 다른점은 인자를 넣는게 아니라 currying은 다음 인자를 받는 함수를 리턴
+ 
+ * 커링은 상세한 컨트롤이 가능하다 
+ 
+ Function.prototype.curry = function (numArgs) {
+ 
+  var func = this;
+  
+  numArgs = numArgs || func.length; // 명시적으로 선언이 안되어 있으면 optinally specify
+  
+  function subCurry (prev) {
+  
+    return function (arg) {
+      
+      var args = prev.concat(arg);
+      
+      if (args.length < numArgs) {
+      
+        return subCurry(args); // 재귀
+        
+      }
+      
+      else { 
+      
+        return func.apply(this, args);
+      
+      }
+      
+    };
+    
+  }
+  
+  return subCurry([]);
+ 
+};
+
+function rgb2hex(r, g, b) {
+  
+  return '#' + nums2hex(r) + nums2hex(g) + nums2hex(b);
+  
+}
+
+var hexColors = rgb2hex.curry();
+
+console.log(hexColors(11)) // returns a curried function
+
+console.log(hexColors(210)(12)(0))  // returns #d20c00
+
+* 다르게 사용할 수 있는건
+
+var reds = function(g,b){return hexColors(255)(g)(b)};
+
+console.log(reds(11, 12))   // returns #ff0b0c
+
+*** So we have to de ne the number of arguments. ***
+
+* partial application과 currying은 composition에서 큰역할을 한다
+
+## In functional programming, we want everything to be a function. We especially want unary functions if possible. If we can convert all functions to unary functions, then magical things can happen.
+함수형 프로그래밍의 정신같다 
+
+* unary functions 오직 한가지 인자만 갖는 함수 polyadic 은 여러가지인자 
+
+
+## Compose
+
+* 오른쪽부터 실행한다 생각하면 편한듯 함수의 연속 
+
+var roundedSqurt = Math.round.compose(Math.sqrt)
+
+console.log( roundedSqrt(5) ); // Returns 2 
+
+var squaredDate =  roundedSqrt.compose(Date.parse)
+   
+console.log( squaredDate("January 1, 2014") ); // Returns: 1178370
+
+var compose = function(f, g) {
+
+  return function(x) {
+  
+    return f(g(x));
+    
+  };
+  
+};
+
+Function.prototype.compose = function(prevFunc) {
+
+  vaer nextFunc = this;
+  
+  return function () {
+  
+    return nextFunc.call(this, prevFunc.apply(this, arguments));
+    
+  }
+  
+* example
+
+function function1(a) {return a + '1';}
+
+function function2(b) {return b + '2';}
+
+function function3(c) return c + '3';}
+
+var composition = function3.compose(function2).compose(function1);
+
+console.log(composition('count')); // returns 'count123'
+
+## sequence - compose in reverse 
+
+* 왼쪽에서 오른쪽으로 가게 하고싶은거 (체인메소드 쓰지그냥)
+
+Function.prototype.sequence = function(prevFunc) {
+  
+  var nextFunc = this;
+  
+  return function() {
+  
+    return prevFunc.call(this, nextFunc.apply(this, arguments));
+    
+  }
+  
+}
+
+var sequences = function1.sequence(function2).sequence(function3);
+
+console.log( sequences('count') ); // returns 'count 1 2 3'
+
+## Compositions versus chains
+
+* map을 써서 하는것은 동작하긴 하지만 수학적으로 올바르지 않다 => 의역하기 힘든데 그냥 보기싫은거같다 
+
+
+## Programming with compose 
+
+* 이부분은 책을 참조하는게 낫겟다
+
