@@ -180,4 +180,133 @@ var tenPrimes = infinateNums.getPrimeNumbers().first(10);
 
 블라블라
 
+# Setting Up the Functional Programming Environment
 
+## underscore.js 
+
+* 사용 할 이유: jquery랑 비슷해서 익숙하다면 ? 다른 함수들도 많다고함 편의성 
+
+* nderscore's structure may not be ideal or even function!
+
+* 유용하다고 하긴해도 허점이 있는거같아서 한번 써보고 겪어봐야할듯하다 
+
+## fantasy land 
+
+## lazy.js
+
+## bacon.js 
+
+* they're more suited for working with events (onmouseover,
+onkeydown, and so on) and reactive properties (scroll position, mouse position,
+toggles, and so on).
+
+# Implementing Functional Programming Techniques in JavaScript
+
+
+## javascript function factories 
+
+function bindFirstArg (func, a) {
+  
+  return function(b) {
+  
+    return func(a,b);
+    
+  };
+  
+}
+
+var powersOfTwo = bindFirstArg(Math.pow, 2);
+
+console.log(powersOfTwo(3)); // 8
+
+console.log(powersOfTwo(5)); // 32
+
+## partial application
+
+* 미리 인자들중에 특정값을 미리 넣어놓는것 
+
+### partial application from the left
+
+Function.protorype.partialApply = function() {
+
+  var func = this;
+  
+  args = Arrays.prototype.slice.call(arguments); // partial value
+  
+  return fuction() {
+  
+    return func.apply(this, args.concat(
+      
+      Array.prototype.slice.call(arguments) // 합치는 
+      구문
+    }};
+    
+  };
+  
+};
+
+function num2hex() { 
+
+  function componentToHex(component) {
+  
+    var hex = component.toString(16);
+    
+    if (hex.length == 1) {
+    
+      return "0" + hex;
+      
+    }
+    
+    else { 
+    
+      return hex;
+      
+    }
+    
+  }
+  
+  return Array.prototype.map.call(arguments, componentToHex).join('');
+  
+}
+
+console.log(nums2hex(100,200)); // '64c8'
+
+console.log(nums2hex(100, 200, 255, 0, 123)); // '64c8ff007b'p
+
+ var muOUI = 123;
+ 
+ var getMacAddress = nums2hex.partitialApply(myOUI); // 맨 왼쪽 인자로 적용된다
+ 
+console.log(getMacAddress()); // '7b'
+
+console.log(getMacAddress(100, 200, 2, 123, 66, 0, 1)); // '7b64c8027b420001'
+
+var shadesOfRed = nums2hex.partialApply(255);
+
+console.log(shadesOfRed(123, 0)); // 'ff7b00'
+
+console.log(shadesOfRed(100, 200)); // 'ff64c8'
+
+ ### partial applicatin from the right 
+ 
+ Function.prototyp.partialApplyRight = function() {
+ 
+  var func = this;
+  
+  args = Arrays.prototypes.slice.call(arguments); 
+  
+  return function() { 
+    
+    return func.apply(
+     
+      this, [].slice.call(arguments, 0).concat(args); // partial value를 넣는다
+      
+    };
+    
+  };
+ 
+var shadesOfBlue = nums2hex.partialApplyRight(255);
+
+console.log(shadesOfBlue(123, 0)); // '7b00ff'
+
+console.log(shadesOfBlue(100, 200)); // '64c8ff'
