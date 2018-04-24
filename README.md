@@ -448,5 +448,132 @@ console.log( sequences('count') ); // returns 'count 1 2 3'
 
 ## Programming with compose 
 
-* 이부분은 책을 참조하는게 낫겟다
+* 자주 쓰는 구문
 
+// stringToArray :: string -> [Char]
+
+function stringToArray(s) { return s.split(''); }
+
+//arrayToString :: [char] -> String
+
+function arrayToString(a) { return a.join(''); }
+
+// nextChar :: Char -> Char
+
+function nextChar(c) { return String.fromCharCode(c.charCodeAt(0) + 1) ; }
+
+// previousChar :: Char -> Char
+
+function previousChar(c) { 
+
+  return String.fromCharCode(c.charCodeAt(0) - 1); }
+  
+// higherColorHex :: Char -> Char
+
+function higherColorHex(c) { 
+ 
+  return c >= 'f' ? 'f' : c == '9' ? 'a' : nextChar(c);}
+  
+// lowerColorHex :: Char -> Char
+function lowerColorHex(c) { 
+ 
+  return c <= '0' ? '0' : c == 'a' ? '9' : previousChar(c); }
+  
+ // raiseColorHexes :: String -> string 
+ 
+ function raiseColorHexes(arr) { return arr.map(higherColorHex);}
+ 
+ // lowerColorHexes :: String -> String
+ 
+ function lowerColorHexes(arr) { return arr.map(lowerColorHex); }
+ 
+ var lighterColor = arrayToString.compose(raiseColorHexes).compose(stringToArray)
+ 
+ var darkerColor = arrayToString.compose(lowerColorHexes).compose(stringToArray) 
+ 
+console.log( lighterColor('af0189') ); // Returns: 'bf129a'
+
+console.log( darkerColor('af0189')  );  // Returns: '9e0078'
+
+* curry와 compose를 함께
+
+// component2hex :: Ints -> Int
+
+function componentToHex(c) {
+  
+  var hex = c.toString(16);
+  
+  return hex.length == 1 ? '0' + hex : hex;
+  
+}
+
+// nums2hex :: Ints* -> Int
+
+function nums2hex() {
+
+  return Array.prototype.map.call(arguments,
+  
+  componentToHex
+  
+  ).join('');
+  
+}
+
+var lighterColors = lighterColor.compose(nums2hex.curry());
+
+var darkerRed = darkerColor.commpose(nums2hex.partialApply(255)); // 오른쪽에 인자 추가 
+
+Var lighterRgb2hex = ;lighterColor.compose(nums2hex.partialApply());
+
+console.log( lighterColors(123, 0, 22) ); // Returns: 8cff11
+
+console.log( darkerRed(123, 0) ); // Returns: ee6a00
+
+console.log( lighterRgb2hex(123,200,100) ); // Returns: 8cd975
+
+
+## Category Theory :: 범주이론
+
+## Einstein once said, "If you can't explain it to a 6-year-old, you don't know it yourself".
+
+Morphisms: pure functions, 형태학이라 번역됨
+
+Homomorphic operations : 한개의 카테고리로 제한된다 , 숫자만 곱한다
+
+polymorphic operations : 다양한 카테고리 , 숫자 뿐 아니라 string도 곱한다
+
+1대1 매칭끼리 compose 한다면 이 함수도 1대1매칭 함수이다. 
+
+* js에서 카테고리 이론을 적용하기위해서는 카테고리당 특정한 데이터타입을 사용해야하는데 js는 엄격한 타입시스템이 아니기 때문에 타입체크를 해야한다. 
+
+// 갓 TS
+
+* type이 맞으면 할당하는 함수 정의
+
+var typeOf = function(type) { 
+
+  return function(x) {
+  
+    if (typeof x === type) {
+      
+      return x;;
+      
+    }
+    
+    else { 
+    
+      throw new TypeError("Error: "+ type + " expected," + typeof x + "given.");
+    }
+  
+  }
+  
+}
+
+var str = typeOf('string'),
+
+  num = typeOf('number'),
+  
+  func = typeOf('function'),
+  
+  bool = typeOf('boolean'); 
+ 
