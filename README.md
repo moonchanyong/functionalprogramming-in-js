@@ -544,11 +544,16 @@ polymorphic operations : 다양한 카테고리 , 숫자 뿐 아니라 string도
 
 1대1 매칭끼리 compose 한다면 이 함수도 1대1매칭 함수이다. 
 
+### Type safety
 * js에서 카테고리 이론을 적용하기위해서는 카테고리당 특정한 데이터타입을 사용해야하는데 js는 엄격한 타입시스템이 아니기 때문에 타입체크를 해야한다. 
 
 // 갓 TS
 
+
+
 * type이 맞으면 할당하는 함수 정의
+
+
 
 var typeOf = function(type) { 
 
@@ -577,3 +582,97 @@ var str = typeOf('string'),
   
   bool = typeOf('boolean'); 
  
+ * 정확하게 타입을 지정학위해 사용
+ 
+ object는 다르게 검사
+ 
+ var objectTypeOf = function(name) {
+ 
+  return function(o) {
+   
+    if (Object.prototype.toString.call(o) === "[object " + name + "]"))
+    
+    {
+    
+      return o;
+      
+    }
+    
+    else {
+    
+      throw new TypeError("Error: '+name+' expected, something else given. "_;
+      
+    }
+    
+  }
+  
+}
+  
+var obj = objectTypeOf('Object');
+
+var arr = objectTypeOf('Array');
+
+var date = objectTypeOf('Date');
+
+var div = objectTypeOf('HTMLDivElement');
+
+### functors
+
+morphisms 는 타입끼리 지정하지만 functors는 카테고리끼리 지정한다
+
+### Creating functiors
+
+.map is functor
+
+* array의 method가 아닌 global function으로 정의하자!
+
+// map :: (a -> b) -> [a] -> [b]
+
+var map = fuction(f, a) {
+  
+  return arr(a).map(func(f));
+
+}
+
+// strmap :: (str -> str) -> str -> str
+
+var strmap = function(f, s) {
+
+  return str(s).split('').map(func(f)).join('');
+  
+}
+
+//  Obj#map :: (Obj -> a) -> a
+
+Obj.prototype.map(f{ 
+  
+  return func(f)(this.Obj);
+  
+)
+
+## Arrays and functors
+
+// arrayOf :: (a -> b) -> ([a] -> [b])
+
+var arrayOf = function(f) {
+
+  return function(a) {
+  
+    return map(func(f), arr(a));
+    
+  }
+  
+}
+
+## Function compositions, revisited
+
+var fcompose = function(f, g) {
+
+  return function() {
+    
+    return f.call(this, g.apply(this, arguments));
+    
+  };
+  
+};
+
