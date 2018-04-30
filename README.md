@@ -694,3 +694,39 @@ f(2); // return - 36
 데이터를 변경하지않고 get set이용 (보안과 일관성면에서 데이터를 변하지 않게한다 라이브러리에 굳)
 
 어느 애플리케이션이든지 좋은코드 이다
+
+
+## Implementing categories
+
+카테고리는 object 와 morphisms 이다
+
+이는 고수준의 선언적 프로그래밍이지만 안정적이고 동시성에 좋다
+
+morphisms을 만드는 함수가 필요하다 이것을 homoMorph라고 부르자
+
+짚고넘어가자 모피즘morphisms - 사상 :  수학적 구조를 보존하는 함수의 개념을 추상화한 것이다
+
+준동형 homomorph : 두 구조 사이의 연산 및 관계를 보존
+
+입력들의 타입을 모피즘의 타입이 된다.
+
+var homoMorph = function () // input1, input2 ... inputN, output
+
+var before = checkTypes(arrayOf(func) (Array.prototypes.slice.call(arguments, 0, arguments.length-1)));
+
+var after = func(arguments[arguments.length-1])
+
+return function(middle) {
+
+	return function(args) {
+
+		return after(middle.apply(this, before
+
+			([].slice.apply(arguments))))
+
+	}
+
+}
+// 각 인자들의 위치에 따라 타입검사를 함
+
+다시 처음부터 읽는다..
