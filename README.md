@@ -1,5 +1,40 @@
-# functionalprogramming-in-js
 functional programming in js 정리
+
+# preface
+
+## what this book covers
+
+### chapter1. The Powers of javascript's functional side
+
+자바스크립트의 함수측면의 강점 소개
+
+### Chapter2. fundmentals of Functional Programming
+
+함수형 프로그래밍의 기본, 개념, 잘짜인 자바스크립트 함수
+
+### Chapter3. Setting Up the functional Programming Environment
+
+자바스크립트 라이브러리 소개 및 각 어떻게 함수형프로그래밍을 최적화 하는지
+
+### Chapter4. Implementing Functional Programming Techniques in JavaScript
+
+자바스크립트의 함수형 패러다임 설명 및 함수형 프로그래밍의 몇가지 스타일을 소개하고 다른 시나리오에서
+
+많이 사용 될 수 있는지 증명한다.
+
+### Chapter5. Category Theory
+
+범주이론의 개념 및 자바스크립트로의 구현
+
+### Chapter6. Advanced Topics and Pitfalls in JavaScript
+
+자바스크립트로 마주치는 중요한 단점과 이를 해결하는 다양한 방법
+
+### Chapter7. Functional and Object-Oriented Programming in JavaScript
+
+자바스크립트에서 OOP 와 FP에 대하여. 그리고 두패러다임을 서로 보완하며 동시에 공존하는 방법
+
+
 
 ## functional programming language의 특성
 
