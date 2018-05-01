@@ -58,9 +58,9 @@ pseudo code만 적는다
 
 		var coffeName = {
 
-		   	name: coffeName,
+	   	name: coffeName,
 
-		  	basePrice: price
+	  	basePrice: price
 
 		};
 
@@ -70,9 +70,9 @@ pseudo code만 적는다
 
 		{
 
-				switch(size)
+			switch(size)
 
-				// add html
+			// add html
 
 		}
 
@@ -98,9 +98,9 @@ imperative code가 잘못된 이유
 
 		var size = {
 
-				getPrice: function() {return this.basePrice + 2},
+			getPrice: function() {return this.basePrice + 2},
 
-				getLabel: function() {return this.name + size}
+			getLabel: function() {return this.name + size}
 
 		}
 
@@ -114,17 +114,17 @@ imperative code가 잘못된 이유
 
 		var coffees = coffeeTypes.reduce(function(previous, current) {
 
-			  var newCoffee = coffeeSizes.map(function(mixin) {
+		  var newCoffee = coffeeSizes.map(function(mixin) {
 
-				    // `plusmix` function for functional mixins, see Ch.7
+		    // `plusmix` function for functional mixins, see Ch.7
 
-				    var newCoffeeObj = plusMixin(current, mixin);
+		    var newCoffeeObj = plusMixin(current, mixin);
 
-				    return new newCoffeeObj();
+		    return new newCoffeeObj();
 
-				}); // end map
+			}); // end map
 
-		  	return previous.concat(newCoffee);
+	  	return previous.concat(newCoffee);
 
 		},[]); // end reduce
 
@@ -132,7 +132,7 @@ imperative code가 잘못된 이유
 
 		coffees.forEach(function(coffee){
 
-		  	printPrice(coffee.getPrice(),coffee.getLabel());
+	  	printPrice(coffee.getPrice(),coffee.getLabel());
 
 		});
 
