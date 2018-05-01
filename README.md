@@ -35,6 +35,118 @@ functional programming in js 정리
 자바스크립트에서 OOP 와 FP에 대하여. 그리고 두패러다임을 서로 보완하며 동시에 공존하는 방법
 
 
+# Chapter1. The Powers of javascript's functional side - a Demonstration
+
+
+## The demonstaration
+
+증명을 통해 함수형 프로그래밍을 소개해보자. 전통적인 자바스크립트와 함수형프로그래밍 코드를 작성해볼것이다.
+
+그리고 비교해보자
+
+### The application - an e-commerce website
+
+실제 상황이라 가정하고 커피 빈 회사의 주문을 위한 e-commerce 웹 앱을 작성한다.
+
+여러가지 타입의 커피와 양에따라 가격이 다르다.
+
+#### imperative methods: 흔한 방법
+
+pseudo code만 적는다
+
+// create some objects to store the data.
+
+var coffeName = {
+
+   name: coffeName,
+
+  basePrice: price
+
+};
+
+// we'll use a helper function to calculate the cost
+
+function printPrice(coffee, size)
+
+{
+
+	switch(size)
+
+	// add html
+
+}
+
+// 모든 데이터 만큼 printPrice()
+
+*커피 종류가 많아지고 다른 옵션들이 생겨난다면 코드 수가 급격하게 늘어남*
+
+imperative code가 잘못된 이유
+
+#### functional programming
+
+// separate the data and logic from the interface
+
+// create function objects for each type of coffee
+
+// 함수 object로 정의
+
+var coffeName = function(){
+	 this.name = coffeName;
+	 this.basePrice = price;
+ };		
+
+// create object literals for the different sizes
+
+// 각 사이즈마다 obj 선언
+
+var size = {
+
+	getPrice: function() {return this.basePrice + 2},
+	getLabel: function() {return this.name + size}
+}
+
+// put all the coffee types and sizes into arrays
+
+var coffeeTypes = [columbian, frenchRoast, decaf];
+
+var coffeeSizes = [small, medium, large];
+
+// 섞어서 새로운 object를 만든다
+
+var coffees = coffeeTypes.reduce(function(previous, current) {
+
+  var newCoffee = coffeeSizes.map(function(mixin) {
+
+    // `plusmix` function for functional mixins, see Ch.7
+
+    var newCoffeeObj = plusMixin(current, mixin);
+
+    return new newCoffeeObj();
+
+	}); // end map
+
+  return previous.concat(newCoffee);
+
+},[]); // end reduce
+
+// coffees 배열에 모든 정보를 가짐 [{price, label}]
+
+coffees.forEach(function(coffee){
+
+  printPrice(coffee.getPrice(),coffee.getLabel());
+
+});
+
+// 커피나 사이즈 추가는 배열에 넣기만 하면 쉽게 됨
+
+## Summary
+
+함수형 스타일은 깔끔하다
+
+두번째 어렵지않다. lambda calculs은 모든 함수에 적용된다.
+
+작은 조각으로 볼 수 있어서 유지보수에 쉽고 신뢰성 높아진다.
+
 
 ## functional programming language의 특성
 
