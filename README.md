@@ -54,29 +54,29 @@ functional programming in js 정리
 
 pseudo code만 적는다
 
-// create some objects to store the data.
+		// create some objects to store the data.
 
-var coffeName = {
+		var coffeName = {
 
-   name: coffeName,
+		   	name: coffeName,
 
-  basePrice: price
+		  	basePrice: price
 
-};
+		};
 
-// we'll use a helper function to calculate the cost
+		// we'll use a helper function to calculate the cost
 
-function printPrice(coffee, size)
+		function printPrice(coffee, size)
 
-{
+		{
 
-	switch(size)
+				switch(size)
 
-	// add html
+				// add html
 
-}
+		}
 
-// 모든 데이터 만큼 printPrice()
+		// 모든 데이터 만큼 printPrice()
 
 *커피 종류가 많아지고 다른 옵션들이 생겨난다면 코드 수가 급격하게 늘어남*
 
@@ -84,60 +84,59 @@ imperative code가 잘못된 이유
 
 #### functional programming
 
-// separate the data and logic from the interface
+		// separate the data and logic from the interface
 
-// create function objects for each type of coffee
+		// create function objects for each type of coffee
 
-// 함수 object로 정의
+		// 함수 object로 정의
 
-var coffeName = function(){
-	 this.name = coffeName;
-	 this.basePrice = price;
- };		
+		var coffeName = function(){
 
-// create object literals for the different sizes
+		// create object literals for the different sizes
 
-// 각 사이즈마다 obj 선언
+		// 각 사이즈마다 obj 선언
 
-var size = {
+		var size = {
 
-	getPrice: function() {return this.basePrice + 2},
-	getLabel: function() {return this.name + size}
-}
+				getPrice: function() {return this.basePrice + 2},
 
-// put all the coffee types and sizes into arrays
+				getLabel: function() {return this.name + size}
 
-var coffeeTypes = [columbian, frenchRoast, decaf];
+		}
 
-var coffeeSizes = [small, medium, large];
+		// put all the coffee types and sizes into arrays
 
-// 섞어서 새로운 object를 만든다
+		var coffeeTypes = [columbian, frenchRoast, decaf];
 
-var coffees = coffeeTypes.reduce(function(previous, current) {
+		var coffeeSizes = [small, medium, large];
 
-  var newCoffee = coffeeSizes.map(function(mixin) {
+		// 섞어서 새로운 object를 만든다
 
-    // `plusmix` function for functional mixins, see Ch.7
+		var coffees = coffeeTypes.reduce(function(previous, current) {
 
-    var newCoffeeObj = plusMixin(current, mixin);
+			  var newCoffee = coffeeSizes.map(function(mixin) {
 
-    return new newCoffeeObj();
+				    // `plusmix` function for functional mixins, see Ch.7
 
-	}); // end map
+				    var newCoffeeObj = plusMixin(current, mixin);
 
-  return previous.concat(newCoffee);
+				    return new newCoffeeObj();
 
-},[]); // end reduce
+				}); // end map
 
-// coffees 배열에 모든 정보를 가짐 [{price, label}]
+		  	return previous.concat(newCoffee);
 
-coffees.forEach(function(coffee){
+		},[]); // end reduce
 
-  printPrice(coffee.getPrice(),coffee.getLabel());
+		// coffees 배열에 모든 정보를 가짐 [{price, label}]
 
-});
+		coffees.forEach(function(coffee){
 
-// 커피나 사이즈 추가는 배열에 넣기만 하면 쉽게 됨
+		  	printPrice(coffee.getPrice(),coffee.getLabel());
+
+		});
+
+		// 커피나 사이즈 추가는 배열에 넣기만 하면 쉽게 됨
 
 ## Summary
 
