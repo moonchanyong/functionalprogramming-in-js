@@ -23,7 +23,34 @@
 
 출처: http://takeuu.tistory.com/93 [워너비스페셜]
 
+### closure
 
+### hoisting
+
+*  변수의 정의가 그 범위에 따라 선언과 할당으로 분리 됨
+* 함수도 마찬가지
+* 코드 상단에서 초기화 스타일을 추천함
+
+
+    function showName() {
+      console.log("First Name : " + name);
+      var name = "Ford";
+      console.log("Last Name : " + name);
+    }
+    showName();
+    // First Name : undefined
+    // Last Name : Ford
+    // First Name이 undefined인 이유는 지역변수 name이 호이스트 되었기 때문입니다.
+
+
+    // 엔진에서 해석 된 코드
+    var showName;
+    function showName() {
+      var name; // name 변수는 호이스트 되었습니다. 할당은 이후에 발생하기 때문에, 이 시점에 name의 값은 undefined 입니다.
+      console.log("First name : " + name); // First Name : undefined
+      name = "Ford"; // name에 값이 할당 되었습니다.
+      console.log("Last Name : " + name); // Last Name : Ford
+    }
 
 ## 변수형 추가
 
