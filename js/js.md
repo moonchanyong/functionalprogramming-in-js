@@ -46,6 +46,7 @@
     }
 
     // es6 typescript 문법인줄알앗네 이거 ;
+    // 클래스는 호이스팅이 지원 안된다.
     class pizza {
       constructor(size, topping) {
         this.size = size;
@@ -73,6 +74,17 @@
 
     // es6
     [1, 2, 3].forEach()() => {});
+
+## for of
+
+* es6에서 추가 된 문법 for of
+* es5의 for in의 문제점은 object를 위해 나와서 배열에서 문제
+    + 프로토 타입 체인도 순회
+    + 순서가 무작위
+    + index가 string
+
+* es6부터 배열을 순회하려면 for of을 사용하면 된다.
+* 객체는 for in을 사용
 
 
 ## template literals
