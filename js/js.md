@@ -24,6 +24,22 @@
 출처: http://takeuu.tistory.com/93 [워너비스페셜]
 
 ### closure
+* 컴퓨터 언어에서 클로저(Closure)는 일급 객체 함수(first-class functions)의 개념을 이용하여 스코프(scope)에 묶인 변수를 바인딩 하기 위한 일종의 기술
+* 기능상으로, 클로저는 함수를 저장한 레코드(record)이며, 스코프(scope)의 인수(Factor)들은 클로저가 만들어질 때 정의(define)되며, 스코프 내의 영역이 소멸(remove)되었어도 그에 대한 접근(access)은 독립된 복사본인 클로저(return 된)를 통해 이루어질 수 있다.
+
+*** 코드를 보는것이 빠르다 ***
+
+    function startAt(x){
+        function incrementBy(y){
+            return x + y;
+        }
+        return incrementBy;
+    }
+
+    var closure1 = startAt(1);
+    closure1(1); // return 2
+    var closure2 = startAt(2)
+    closure2(1); // return 3
 
 ### hoisting
 
