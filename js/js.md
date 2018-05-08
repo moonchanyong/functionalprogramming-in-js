@@ -69,10 +69,10 @@
 ## arrow function expression
 
     // es5
-    [1, 2, 3].foreach(function(){});
+    [1, 2, 3].foraEach(function(){});
 
     // es6
-    [1, 2, 3].foreach()() => {});
+    [1, 2, 3].forEach()() => {});
 
 
 ## template literals
