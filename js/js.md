@@ -7,6 +7,16 @@
 
 ## JS 이해하기
 
+### scope
+* C 같은 경우는 block scope
+    + if 문 등 따로 scope가 주어진다.
+* 자바 스크립트는 function scope를 사용
+    + if 내에서는 scope가 따로 주어지지 않음
+### Lexical
+
+* 다른 말로 static 이라고도 이해한다고 한다.
+
+
 ### js의 함수는 1급 객체이다
 
 #### 1급 객체란(first class object)
@@ -105,6 +115,15 @@
 ## 변수형 추가
 
 * var 5에서 const와 let 추가
+    + var keyword
+      - Function Scope
+      - Hoisting
+      - 중복선언 가능
+    + let keyword
+      - block Scope
+      - no Hoisting
+      - 중복선언 불가(에러 발생)
+
 
 ## module import
 
