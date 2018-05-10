@@ -206,3 +206,10 @@
     tag = (strings, a, b) => strings + a + b;
 
     console.log(tag`pizza ${zzang} ${zzang}`);
+
+
+# 요거 뭐야?를 정의
+
+## Polyfill
+
+* 폴리필(polyfill)은 개발자가 특정 기능이 지원되지 않는 브라우저를 위해 사용할 수 있는 코드 조각이나 플러그인을 말한다. 폴리필은 HTML5 및 CSS3와 오래된 브라우저 사이의 간격을 메꾸는 역할을 담당한다.
