@@ -208,7 +208,12 @@
     console.log(tag`pizza ${zzang} ${zzang}`);
 
 
-# 요거 뭐야?를 정의
+# JSModule
+
+## Uglify
+* 코드를 미니멀리즘화 하는 모듈이다.
+(코드의 가독성을 위한 띄어쓰기 줄바꿈 같은등을 제거해주는 npm 모듈이다.)
+(최적화를 위해 사용하는 모듈)
 
 ## Polyfill
 
