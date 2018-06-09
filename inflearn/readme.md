@@ -129,5 +129,42 @@ moveLeft(dog);
 moveRight(duck);
 moveLeft({ x: 5. y: 2}); //RORO
 moveRight(dog);
+```
 
+## 4. 함수형 프로그래밍 하기 회원 목록, map, filter
+
+```javascript
+//명령형 코드, 이러한 느낌.. 다 중복이다 반복운은 그래서 중복을 제거해야한다.
+  // 1. 30세 이상인 users만 출력한다.
+let temp_users = [];
+for (let i = 0; i < users.length; i++) {
+  if (users[i]).age >= 30) temp_users.push(users[i]);
+}
+console.log(names)
+
+// 함수형 스타일 filter, map으로 리팩토링, 직접 해당값을 변하지 않고 필터링 된 배열을 return한다.
+// 추상화의 단위를 함수로 사용한다. 비교부분을 함수로바꾼다. 응용형 함수래 필터는
+function _filter(users, predicate) {
+  let new_list = [];
+  // 이부분도 forEach를 쓰면 간단해지지만..
+  for (let i = 0; i < users.length; i++)
+    if (predicate(users[i])) temp_users.push(users[i]);
+
+  return new_list;
+}
+
+console.log(_filter(users, (user) => user.age >= 30));
+// 함수를 고차로 받거나 함수를 내부에서 실행하는 함수를 고차함수
+
+
+// map을 만들어보자, 데이터가 어떻게 생겻는지 모른다., 그래서 다형성이좋다, 재사용성이좋다
+function _map() {
+  let new_list = [];
+  for (let i = 0; i < list.length; i+=1) {
+    new_list.push(mapper(list[i]));
+  }
+  return new_list;
+}
+
+console.log([], (user) => user.name);
 ```
