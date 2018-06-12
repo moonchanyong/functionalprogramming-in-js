@@ -13,7 +13,6 @@
 * 자바 스크립트는 function scope를 사용
     + if 내에서는 scope가 따로 주어지지 않음
 ### Lexical
-
 * 다른 말로 static 이라고도 이해한다고 한다.
 
 
@@ -118,11 +117,13 @@
     + var keyword
       - Function Scope
       - Hoisting
-      - 중복선언 가능
+      - 중복선언 가능, 비논리적
+      - for문: var선언시 네임스페이스 오염, 전역에 스코프에 남아있다.
     + let keyword
       - block Scope
       - no Hoisting
       - 중복선언 불가(에러 발생)
+      - for문: 네임스코프는 오염이안되고, 블록에서 매 실행시 선언되어서 클로저에서도 의도한 바가나옴 
 
 
 ## module import
